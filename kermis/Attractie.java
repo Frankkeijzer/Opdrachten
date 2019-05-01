@@ -11,8 +11,6 @@ abstract class Attractie {
 	void Draaien(){
 		System.out.println(naam + " draait.");
 		omzet += prijs;
-		//System.out.println(kaartje);
 		kaartje++;
-		//System.out.println(kaartje);
 	}
 }

@@ -17,8 +17,6 @@ class Ladderklimmen extends Attractie implements gokAttractie{
 	}
 	
 	
-	
-	
-	
+		
 
 }

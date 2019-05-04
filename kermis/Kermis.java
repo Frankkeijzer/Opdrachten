@@ -36,6 +36,13 @@ class Kermis {
 					spin.Draaien();
 					kassa.Omzet(spin.prijs);
 					spin.doorgaan = spin.testenLimiet();
+					((Spin) spin).kansSpelBelastingBetalen();
+					if (spin.kaartje == belastinginspecteur.inspectie) {
+						System.out.print("De inspecteur komt, de te betalen belasting is ");
+						System.out.println(((Spin) spin).kansSpelBelasting - ((Spin) spin).omzetBelastingBetaald);
+						((Spin) spin).omzetBelastingBetaald = ((Spin) spin).kansSpelBelasting;
+						belastinginspecteur.Inspecteren();
+					}
 				} else {
 					spin.doorgaan = spin.Onderhoudsbeurt();
 					spin.limiet = 5;
@@ -68,6 +75,7 @@ class Kermis {
 					System.out.println(((Ladderklimmen) ladderklimmen).kansSpelBelasting - ((Ladderklimmen) ladderklimmen).omzetBelastingBetaald);
 					((Ladderklimmen) ladderklimmen).omzetBelastingBetaald = ((Ladderklimmen) ladderklimmen).kansSpelBelasting;
 					belastinginspecteur.Inspecteren();
+				}
 				break;
 			case "o":
 				omzetPrint();

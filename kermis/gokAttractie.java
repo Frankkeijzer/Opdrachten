@@ -1,5 +1,7 @@
 package opdrachten.kermis;
 
-public interface gokAttractie {
-	double kansSpelBelastingBetalen();
+interface gokAttractie {
+	
+	void kansSpelBelastingBetalen();
+	
 }

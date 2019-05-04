@@ -2,11 +2,16 @@ package opdrachten.kermis;
 
 import java.util.Random;
 
-public class BelastingInspecteur {
+class BelastingInspecteur {
+	int inspectie;
 	
-	void komstInspecteur(){
+	void Inspecteren(){
 		Random getal = new Random();
-		int inspectie = getal.nextInt();
-		System.out.println(inspectie);
+		int randomInspectie = getal.nextInt(3) + 1;
+//		inspectie = getal.nextInt(14) + 1;
+		inspectie = inspectie + randomInspectie;
+		System.out.println("Random inspectie " + inspectie);
 	}
+	
+	
 }

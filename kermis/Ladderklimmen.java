@@ -1,8 +1,9 @@
 package opdrachten.kermis;
 
-public class Ladderklimmen extends Attractie implements gokAttractie{
+class Ladderklimmen extends Attractie implements gokAttractie{
 	double kansSpelBelasting;
-
+	double omzetBelastingBetaald;
+	
 	Ladderklimmen(){
 		naam = "Ladderklimmen";
 		prijs = 5.00;
@@ -10,8 +11,14 @@ public class Ladderklimmen extends Attractie implements gokAttractie{
 	}
 
 	@Override
-	public double kansSpelBelastingBetalen() {
-		return kansSpelBelasting = omzet * 0.3;
+	public void kansSpelBelastingBetalen() {
+		kansSpelBelasting = omzet * 0.3;
 		
 	}
+	
+	
+	
+	
+	
+
 }

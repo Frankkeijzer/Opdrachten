@@ -17,7 +17,7 @@ abstract class RisicoRijkeAttractie extends Attractie{
 		System.out.println("De opstelling van " + naam + " wordt gekeurd, even geduld.\n");
 	}
 	
-	boolean Monteur(){
+	boolean Onderhoudsbeurt(){
 		System.out.println("De attractie " + naam + "moet gecontroleerd worden? Voor een sturen van een monteur toets \"m\".");
 		Scanner sc = new Scanner(System.in);
 		String input = sc.nextLine().toLowerCase();

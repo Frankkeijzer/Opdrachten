@@ -11,20 +11,19 @@ class Kermis {
 	RisicoRijkeAttractie hawaii = new Hawaii();
 	Attractie ladderklimmen = new Ladderklimmen();
 	Kassa kassa = new Kassa();
-	BelastingInspecteur belastinginspecteur = new BelastingInspecteur();
 
 	
 	void Open(){
 		spin.opstellingsKeuring();
 		hawaii.opstellingsKeuring();
-		belastinginspecteur.Inspecteren();
+		kassa.inspecteur.Inspecteren();
+
 		System.out.println("De kermis is open en de attracties draaien, voor welke attractie is er een kaart verkocht?\n");
-		//belastinginspecteur.komstInspecteur();
 		
 		while (open) {
 			System.out.println("1: De Botsauto's\n2: De Spin\n3: Het Spiegelpaleis\n4: Het Spookhuis\n5: De Hawaii\n6: Ladderklimmen\no: Tonen omzet per atractie en totaal\nk: Tonen het aantal verkochte kaartjes per attractie en totaal\nq: Stop de applicatie\n");
 			System.out.println("Geef het nummer van de attractie in of \"q\" om te stoppen: ");
-			String input = schermInput();
+			String input = schermInput().toLowerCase();
 			
 			switch(input) {
 			case "1":
@@ -37,15 +36,7 @@ class Kermis {
 					kassa.Omzet(spin.prijs);
 					spin.doorgaan = spin.testenLimiet();
 					((Spin) spin).kansSpelBelastingBetalen();
-					if (spin.kaartje == belastinginspecteur.inspectie) {
-						System.out.print("De inspecteur komt, de te betalen belasting is ");
-						System.out.println(((Spin) spin).kansSpelBelasting - ((Spin) spin).omzetBelastingBetaald);
-						((Spin) spin).omzetBelastingBetaald = ((Spin) spin).kansSpelBelasting;
-						belastinginspecteur.Inspecteren();
-					}
-				} else {
-					spin.doorgaan = spin.Onderhoudsbeurt();
-					spin.limiet = 5;
+					uitvoerenInspectie();
 				}
 				break;
 			case "3":
@@ -70,12 +61,7 @@ class Kermis {
 				ladderklimmen.Draaien();
 				kassa.Omzet(ladderklimmen.prijs);
 				((Ladderklimmen) ladderklimmen).kansSpelBelastingBetalen();
-				if (ladderklimmen.kaartje == belastinginspecteur.inspectie) {
-					System.out.print("De inspecteur komt, de te betalen belasting is ");
-					System.out.println(((Ladderklimmen) ladderklimmen).kansSpelBelasting - ((Ladderklimmen) ladderklimmen).omzetBelastingBetaald);
-					((Ladderklimmen) ladderklimmen).omzetBelastingBetaald = ((Ladderklimmen) ladderklimmen).kansSpelBelasting;
-					belastinginspecteur.Inspecteren();
-				}
+				uitvoerenInspectie();
 				break;
 			case "o":
 				omzetPrint();
@@ -90,10 +76,21 @@ class Kermis {
 			default:
 				System.out.println("Je invoer is niet juist, probeer het nog een keer.\n\n");
 				break;
-			
 			}
 		}
-		
+	}
+	
+	void uitvoerenInspectie() {
+		if (ladderklimmen.kaartje + spin.kaartje == kassa.inspecteur.inspectie) {
+			System.out.print("De inspecteur komt, de te betalen belasting is ");
+			System.out.println(((Ladderklimmen) ladderklimmen).kansSpelBelasting + ((Spin) spin).kansSpelBelasting - ((Ladderklimmen) ladderklimmen).omzetBelastingBetaald - ((Spin) spin).omzetBelastingBetaald);
+			((Ladderklimmen) ladderklimmen).omzetBelastingBetaald = ((Ladderklimmen) ladderklimmen).kansSpelBelasting;
+			((Spin) spin).omzetBelastingBetaald = ((Spin) spin).kansSpelBelasting;
+			kassa.inspecteur.Inspecteren();
+		} else {
+			spin.doorgaan = spin.Onderhoudsbeurt();
+			spin.limiet = 5;
+		}
 	}
 	
 	void omzetPrint() {

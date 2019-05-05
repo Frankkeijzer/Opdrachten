@@ -12,8 +12,7 @@ class Ladderklimmen extends Attractie implements gokAttractie{
 
 	@Override
 	public void kansSpelBelastingBetalen() {
-		kansSpelBelasting = omzet * 0.3;
-		
+		kansSpelBelasting = omzet * percentageBelasting;
 	}
 	
 	

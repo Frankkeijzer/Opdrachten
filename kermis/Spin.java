@@ -13,7 +13,7 @@ public class Spin extends RisicoRijkeAttractie implements gokAttractie{
 
 	@Override
 	public void kansSpelBelastingBetalen() {
-		kansSpelBelasting = omzet * 0.3;
+		kansSpelBelasting = omzet * percentageBelasting;
 		
 	}
 	

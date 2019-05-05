@@ -1,10 +1,10 @@
 package opdrachten.kermis;
 
-import java.util.Scanner;
 
 abstract class RisicoRijkeAttractie extends Attractie{
 	int limiet;
 	boolean doorgaan = true;
+	
 	
 	boolean testenLimiet() {
 		if (--limiet < 1) {
@@ -19,8 +19,7 @@ abstract class RisicoRijkeAttractie extends Attractie{
 	
 	boolean Onderhoudsbeurt(){
 		System.out.println("De attractie " + naam + " moet gecontroleerd worden. Voor het sturen van een monteur toets \"m\".");
-		Scanner sc = new Scanner(System.in);
-		String input = sc.nextLine().toLowerCase();
+		String input = Kermis.schermInput().toLowerCase();
 		if (input.contentEquals("m")) {
 			System.out.println("Controle wordt uitgevoerd");
 			doorgaan = true;
@@ -30,4 +29,7 @@ abstract class RisicoRijkeAttractie extends Attractie{
 		}
 		return doorgaan;
 	}
+	
+	
+	
 }

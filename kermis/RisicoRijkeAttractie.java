@@ -1,6 +1,5 @@
 package opdrachten.kermis;
 
-
 abstract class RisicoRijkeAttractie extends Attractie{
 	int limiet;
 	boolean doorgaan = true;

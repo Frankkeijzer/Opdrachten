@@ -13,4 +13,5 @@ abstract class Attractie {
 		omzet += prijs;
 		kaartje++;
 	}
+	
 }
